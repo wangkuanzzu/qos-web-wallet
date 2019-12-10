@@ -63,16 +63,13 @@
               </div>
               <div class="text-detail">
                 <div class="div-contents">
-                  <div>{{ delegation.moniker }}</div>
-                  <div class="link-wrap">
-                    <el-link :href="delegation.validatorUrl" target="_blank">
-                      <i class="el-icon-link"></i>
-                    </el-link>
-                  </div>
+                  <span>{{ delegation.moniker }}</span>
+                  <el-link :href="delegation.validatorUrl" target="_blank">
+                    <i class="el-icon-link"></i>
+                  </el-link>
                 </div>
-                <div>
+                <div class="div-contents">
                   <span>
-                    <br />
                     {{ delegation.validator_address }}
                   </span>
                 </div>
