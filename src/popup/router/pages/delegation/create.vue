@@ -80,7 +80,7 @@ export default {
     return {
       rules: {
         tokens: [
-          { required: true, message: '请输入转账数量,限制最多4位小数', trigger: 'change' },
+          { required: true, message: '请输入数量,限制最多4位小数', trigger: 'change' },
           { validator: validateTokens, trigger: 'change' }
         ],
         compound: [

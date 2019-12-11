@@ -77,11 +77,11 @@ export default {
     }
     var validateTokens = (rule, value, callback) => {
       if (parseFloat(value) === 0) {
-        callback(new Error('委托数量不可为0'))
+        callback(new Error('转账数量不可为0'))
         this.isDisabled2 = true
         return false
       } else if (parseFloat(value) > parseFloat(this.balance)) {
-        callback(new Error('委托数量不可大于账户余额'))
+        callback(new Error('转账数量不可大于账户余额'))
         this.isDisabled2 = true
         return false
       }
