@@ -254,7 +254,6 @@ export default {
         })
     },
     handleClick (tab, event) {
-      // console.log(tab, event);
       if (tab.name === 'delegation') {
         this.getDelegations(this.$data.address)
       } else if (tab.name === 'balance') {
@@ -311,11 +310,6 @@ export default {
           name: this.userName
         }
       })
-    },
-    copy () {
-      var Url2 = document.getElementById('test')
-      Url2.select() // 选择对象
-      document.execCommand('Copy') // 执行浏览器复制命令
     }
   }
 }

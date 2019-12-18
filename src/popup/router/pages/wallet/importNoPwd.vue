@@ -160,37 +160,40 @@ export default {
       this.$router.push({ name: 'homepage' })
     },
     async submitForm () {
-      let mn, prikey
-      // 私钥或助记词方式导入账户 todo
-      const selectType = this.ruleForm.value
-      if (selectType === '1' && this.ruleForm.memwd !== '') {
-        mn = this.ruleForm.memwd
-      } else if (selectType === '0' && this.ruleForm.pri !== '') {
-        prikey = this.ruleForm.pri
-      } else {
-        this.error = '导入类型与其对应值不得为空,请重新选择!'
-        this.isBtnLoading = false
-        this.dialogVisible = true
-        return
-      }
-      const bg = getBackground()
-      const account = await bg.saveAccount({
-        privateKey: prikey,
-        mnemonic: mn,
-        pwd: this.ruleForm.password
+      return new Promise(async (resolve) => {
+        let mn, prikey
+        // 私钥或助记词方式导入账户 todo
+        const selectType = this.ruleForm.value
+        if (selectType === '1' && this.ruleForm.memwd !== '') {
+          mn = this.ruleForm.memwd
+        } else if (selectType === '0' && this.ruleForm.pri !== '') {
+          prikey = this.ruleForm.pri
+        } else {
+          this.error = '导入类型与其对应值不得为空,请重新选择!'
+          this.isBtnLoading = false
+          this.dialogVisible = true
+          return
+        }
+        const bg = getBackground()
+        const account = await bg.saveAccount({
+          privateKey: prikey,
+          mnemonic: mn,
+          pwd: this.ruleForm.password
+        })
+        if (account.address === '') {
+          this.error = '您输入的私钥或助记词有误,请检查!'
+          this.isBtnLoading = false
+          this.dialogVisible = true
+          return
+        }
+        // popup store中存储currentAccount, 数据来源与持久化存储的当前账户
+        const currentAccount = await getCurrentAccount()
+        store.commit(types.SET_CURRENT_ACCOUNT, currentAccount)
+        // 创建账户成功,拷贝bg store中的accounts到popup store中
+        const bgState = bg.getBgState()
+        store.commit(types.CLONE_STATE, { keyArr: ['accounts', 'passCheck'], bgState })
+        resolve()
       })
-      if (account.address === '') {
-        this.error = '您输入的私钥或助记词有误,请检查!'
-        this.isBtnLoading = false
-        this.dialogVisible = true
-        return false
-      }
-      // popup store中存储currentAccount, 数据来源与持久化存储的当前账户
-      const currentAccount = await getCurrentAccount()
-      store.commit(types.SET_CURRENT_ACCOUNT, currentAccount)
-      // 创建账户成功,拷贝bg store中的accounts到popup store中
-      const bgState = bg.getBgState()
-      store.commit(types.CLONE_STATE, { keyArr: ['accounts', 'passCheck'], bgState })
     },
     resetForm (formName) {
       this.$refs[formName].resetFields()

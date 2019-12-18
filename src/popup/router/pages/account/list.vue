@@ -34,7 +34,7 @@
             <div class="top-wrap">
               <span>{{ account.name }}&nbsp;&nbsp;</span>
             </div>
-            <div class="span-point">{{ account.address }}</div>
+            <div class="span-point">{{ account.addressDisplay }}</div>
             <div>
               <div class="cont-wrap">
                 <span
@@ -156,7 +156,8 @@ export default {
                   })
                 }
               }
-              this.accounts.push({ name: name, address: address, coins: list })
+              let addressDisplay = address.substring(0, 20) + '......' + address.slice(-18)
+              this.accounts.push({ name: name, address: address, addressDisplay: addressDisplay, coins: list })
             } else {
               // alert(result.statusText);
               this.error = '系统发生错误,请重试!'
@@ -167,9 +168,11 @@ export default {
             console.log('您访问的信息不存在!  error:', error)
             localAcc = localAccountList.find(x => x.address === acc.address)
             name = localAcc.name
+            let addressDisplay = acc.address.substring(0, 20) + '......' + acc.address.slice(-18)
             this.accounts.push({
               name: name,
               address: acc.address,
+              addressDisplay: addressDisplay,
               coins: [{ cointype: 'QOS', amount: 0 }]
             })
           })
