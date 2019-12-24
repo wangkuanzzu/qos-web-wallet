@@ -9,7 +9,7 @@ export class ShowPopupHandler extends BaseMsgHandler {
   }
 
   handler () {
-    console.log('ShowPopupHandler handler')
+    // console.log('ShowPopupHandler handler')
     store.commit(types.INPUT_TOPAGE_PARAMS, new ToPage(this.oMsg.params))
     store.commit(types.ADD_ACTIONNUM)
     this.noti.showPopup()

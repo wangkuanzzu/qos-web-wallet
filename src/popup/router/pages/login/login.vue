@@ -80,7 +80,6 @@ export default {
             store.commit(types.CLONE_STATE, { keyArr: ['accounts', 'passCheck'], bgState })
             // process MSG  返回当前账户地址
             if (this.$store.getters.msgQueueLast && this.$store.getters.msgQueueLast.callbackId) {
-              console.log(this.$store.getters.msgQueueLast.callbackId)
               bg.msgProcessed(new Res(true, { addr: store.getters.currentAccount.address }, this.$store.getters.msgQueueLast.callbackId))
             }
             // 跳转主页,如果有消息,自动跳转后续消息处理

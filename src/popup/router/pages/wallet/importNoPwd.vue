@@ -142,7 +142,7 @@ export default {
         : this.$router.push({ name: 'homepage' })
     },
     setImportTypes () {
-      console.log('设置页面显示隐藏')
+      // console.log('设置页面显示隐藏')
       const type = this.ruleForm.value
       if (type === '0') {
         this.flag_pri = true

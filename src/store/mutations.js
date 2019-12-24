@@ -42,7 +42,7 @@ export default {
     state.msgQueueLast.hasDirect = true
   },
   [types.DELETE_MSG_PROCESSED] (state, payload) {
-    console.log('types.DELETE_MSG_PROCESSED --------- start')
+    // console.log('types.DELETE_MSG_PROCESSED --------- start')
     const msgQueue = state.msgQueue
     let msgs
     if (payload.callbackId) {
@@ -61,7 +61,6 @@ export default {
         duration = 100
       }
       // 赋值回调callbackId
-      console.log('赋值回调消息索引:  ', msgs[0])
       payload.msg.callbackId = msgs[0].callbackId
       // 回调消息
       setTimeout(() => {
@@ -69,8 +68,7 @@ export default {
       }, duration)
     }
     // state.msgQueue = msgQueue
-    console.log('state.msgQueue.length', state.msgQueue.length)
-    console.log('types.DELETE_MSG_PROCESSED --------- end')
+    // console.log('types.DELETE_MSG_PROCESSED --------- end')
   },
   [types.DELETEMSGBYCALLBACKID] (state, callbackId) {
     const index = state.msgQueue.findIndex(x => x.callbackId === callbackId)

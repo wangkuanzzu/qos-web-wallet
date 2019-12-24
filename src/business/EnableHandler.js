@@ -43,7 +43,7 @@ export class EnableHandler extends BaseMsgHandler {
     }
 
     // 已有账户且已登录,删除type:qosEnable消息
-    console.log('已有账户且已登录,删除type:qosEnable消息')
+    // console.log('已有账户且已登录,删除type:qosEnable消息')
     window.msgProcessed(new Res(true, {
       flag: 'haslogin',
       addr: store.getters.currentAccount.address

@@ -85,10 +85,10 @@ export function registerGloablFunction (global) {
   }
 
   global.deleteMsg = function (msg) {
-    console.log('global.deleteMsg:  ------  start')
+    // console.log('global.deleteMsg:  ------  start')
     store.commit(types.DELETEMSGBYCALLBACKID, msg.callbackId)
     store.commit(types.DELETE_ACTIONNUM)
-    console.log('global.deleteMsg:  ------  end')
+    // console.log('global.deleteMsg:  ------  end')
   }
 
   // 注销时store移除账户

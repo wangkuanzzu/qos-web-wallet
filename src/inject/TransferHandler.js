@@ -8,7 +8,7 @@ class TransferHandler extends MsgHandler {
 
   // 重写抽象类方法
   handler (callback) {
-    console.log('handler TransferHandler')
+    // console.log('handler TransferHandler')
     const id = this.addCallBack(callback)
     window.postMessage(new InputParams('qosToPage', { pageName: 'transfer', params: this.oMsg }, id), '*')
   }

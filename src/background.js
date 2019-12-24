@@ -12,7 +12,7 @@ const extension = require('extensionizer')
 window.qos_noti = new NotificationManager()
 
 extension.runtime.onMessage.addListener(async function (request, sender, sendResponse) {
-  console.log(sender.tab ? 'from a content script:' + sender.tab.url : 'from the extension')
+  // console.log(sender.tab ? 'from a content script:' + sender.tab.url : 'from the extension')
 
   // typeof request === InputParams
   if (request.flag === 'qos_msg') {

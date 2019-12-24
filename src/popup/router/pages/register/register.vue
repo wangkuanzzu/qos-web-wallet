@@ -23,7 +23,7 @@ export default {
   computed: {
   },
   mounted () {
-    console.log(this.$store.state.toPage.pageName)
+    // console.log(this.$store.state.toPage.pageName)
   },
   methods: {
     newWallet () {

@@ -8,8 +8,7 @@ class DelegateHandler extends MsgHandler {
 
   // 重写抽象类方法
   handler (callback) {
-    console.log('handler DelegateHandler')
-    console.log(this)
+    // console.log('handler DelegateHandler')
     const id = this.addCallBack(callback)
     window.postMessage(new InputParams('qosToPage', { pageName: 'validatorlist', params: this.oMsg }, id), '*')
   }
